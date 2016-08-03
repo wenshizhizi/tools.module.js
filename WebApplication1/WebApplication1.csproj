@@ -112,7 +112,6 @@
     <Content Include="scripts\bootstrap.min.css" />
     <Content Include="scripts\element.module.js" />
     <Content Include="scripts\func.module.js" />
-    <Content Include="scripts\modules-manager.js" />
     <Content Include="scripts\modules.manager.js" />
     <Content Include="scripts\tool.module.js" />
     <Content Include="scripts\use-module.js" />

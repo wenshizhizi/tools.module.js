@@ -6,8 +6,8 @@
      * @param {Stringp[]} args 要格式化的替换值数组
      * @returns {String} 格式化结果 
      */
-    function format(str, args) {
-        var result = str;
+    String.prototype.format = function (str, args) {
+        var result = this;
         if (arguments.length > 0) {
             if (arguments.length == 1 && typeof (args) == "object") {
                 for (var key in args) {
@@ -27,7 +27,7 @@
             }
         }
         return result;
-    }
+    };
 
     /**
      * 判断传入的是否是文件
@@ -38,8 +38,37 @@
         return toString.call(obj) === '[object File]';
     }
 
-    return {        
-        formatStr: format,
-        isFile: isFile
+    /**
+     * 判断对象是否是数字
+     * @param {Object} value 要判断的值
+     * @returns {Boolean} 判断结果
+     */
+    function isNumber(value) {
+        return typeof value === 'number';
+    }
+
+    /**
+     * 判断对象是否是日期对象
+     * @param {Object} value 要判断的对象
+     * @returns {Boolean}  判断结果
+     */
+    function isDate(value) {
+        return toString.call(value) === '[object Date]';
+    }
+
+    /**
+     * 判断对象是否是数组
+     * @param {Object} value 要判断的对象
+     * @returns {Boolean}  判断结果
+     */
+    function isArray(value) {
+        return Array.isArray(value);
+    }
+
+    return {
+        isFile: isFile,
+        isNumber: isNumber,
+        isDate: isDate,
+        isArray: isArray
     }
 });

@@ -35,16 +35,12 @@
      */
     function calculateByExpression(expression, precision, isFourHomesFive) {
         try {
-            if (precision > 15 || precision < 0) {
-                return 
+            if (precision > 15 || precision < 0 || !precision) {
+                precision = 2;
             }
-            if (!isFourHomesFive) {
-                return parseFloat(this.numberFormat(eval(expression), !precision || precision === null || precision === undefined || precision === "" ? 2 : precision));
-            } else {
-                return parseFloat(eval(expression).toFixed(!precision || precision === null || precision === undefined || precision === "" ? 2 : precision));
-            }
+            return toFixed(eval(expression), precision, isFourHomesFive);
         } catch (e) {
-            throw new Error(tool.formatStr("对{0}进行解析计算出错，错误原因是：{1}", [expression, e.message]));
+            throw new Error("对{0}进行解析计算出错，错误原因是：{1}".format(expression, e.message));
         }
     }
 
@@ -56,76 +52,52 @@
      */
     function toFixed(number, precision, isFourHomesFive) {
         try {
-            if (precision > 15 || precision < 0){
+            if (precision > 15 || precision < 0) {
                 return number;
             }
 
+            var numberStr = number.toString();
 
-        } catch (e) {
-            throw new Error(tool.formatStr("对数字进行固定精度操作出错，错误原因是：{0}", [e.message]));
-        }
-    }
+            if (isFourHomesFive) {
+                if (numberStr.indexOf(".") > 0) {
+                    var left = numberStr.substring(0, numberStr.indexOf("."));
+                    var right = numberStr.substr(numberStr.indexOf(".") + 1, precision + 1);
 
-    function numberFormat(number, precision) {
-        /// <summary>格式化小数至指定精度，返回的值是String。</summary>
-        /// <param name="number" type="Number">要格式化的数字</param>
-        /// <param name="precision" type="Number">精度到多少位</param>
-        /// <returns type="String"></returns>
-        try {
-            if (!this.isNumber(number)) throw createErrorInfo("参数1[{0}]并非数字类型数据，请确保输入的参数类型为数字", [number]);
-            if (!this.isNumber(precision)) throw createErrorInfo("参数2[{0}]并非数字类型数据，请确保输入的参数类型为数字", [precision]);
-            if (precision > 15 || precision < 0) throw createErrorInfo("所设置的精度{0}已超过最大精度边界15或者最小边界0", [precision]);
-
-            if (parseInt(number) === number) {
-                return number.toFixed(precision);
-            } else {
-                var p = number.toString().split('.');
-                var r = p[0] + ".";
-                var i = p[1].length;
-                if (i < precision) {
-                    r = number.toFixed(i + (precision - i));
+                    if (right.length > precision) {
+                        if (parseInt(right[precision]) >= 5) {
+                            var temp = parseInt(right.substr(0, [precision])) + 1;
+                            return parseFloat("{0}.{1}".format(left, temp));
+                        } else {
+                            return parseFloat("{0}.{1}".format(left, right.substring(0, precision)));
+                        }
+                    } else {
+                        return number;
+                    }
                 } else {
-                    r += p[1].substring(0, precision);
+                    return number;
                 }
-                return r;
+            } else {
+                if (numberStr.indexOf(".") > 0) {
+                    return parseFloat(numberStr.substring(0, numberStr.indexOf(".") + precision + 1));
+                } else {
+                    return number;
+                }
             }
         } catch (e) {
-            throw createErrorInfo("执行格式化小数精度出错，错误原因是：{0}", [e.message]);
+            throw new Error("对数字进行固定精度操作出错，错误原因是：{0}".format(e.message));
         }
     }
 
+    /**
+     * 校验对象不为undefined和空
+     * @param {Object} value 要判断的对象
+     * @returns {Boolean} 结果
+     */
     function definededAndNotNull(value) {
-        /// <summary>校验对象不为undefined和空</summary>     
-        /// <param name="value" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean"></returns>
         return typeof value !== 'undefined' && value !== null;
     }
 
-    function isNumber(value) {
-        /// <summary>判断对象是否是数字</summary>     
-        /// <param name="value" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean">判断结果</returns>
-        return typeof value === 'number';
-    }
-
-    function isDate(value) {
-        /// <summary>判断对象是否是日期对象</summary>     
-        /// <param name="value" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean">判断结果</returns>
-        return toString.call(value) === '[object Date]';
-    }
-
-    function isArray(value) {
-        /// <summary>判断对象是否是数组</summary>     
-        /// <param name="value" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean"></returns>
-        try {
-            return Array.isArray(value);
-        } catch (e) {
-            return false;
-        }
-    }
-
+    
     function isHasValuesArray(value) {
         /// <summary>判断对象是否是含有值得数组</summary>     
         /// <param name="value" type="Object">要判断的对象</param>             
@@ -191,8 +163,6 @@
         /// <returns type="Boolean">判断结果</returns>
         return typeof val === 'function';
     }
-
-
 
     function isMobilePhone(val) {
         /// <summary>
@@ -552,33 +522,5 @@
     }
 
     return {
-        uuid: uuid,
-        calculateByExpression: calculateByExpression,
-        numberFormat: numberFormat,
-        definededAndNotNull: definededAndNotNull,
-        isNumber: isNumber,
-        isDate: isDate,
-        isArray: isArray,
-        isHasValuesArray: isHasValuesArray,
-        pushStateToHistroy: pushStateToHistroy,
-        isDecimal: isDecimal,
-        isString: isString,
-        isFunction: isFunction,
-        isFile: isFile,
-        fromJson: fromJson,
-        isMobilePhone: isMobilePhone,
-        isWebAddress: isWebAddress,
-        isPhone: isPhone,
-        timeCompare: timeCompare,
-        createStringSplitByCommaFromArray: createStringSplitByCommaFromArray,
-        formatJsonDate: formatJsonDate,
-        randomBy: randomBy,
-        templateHelper: templateHelper,
-        getClientType: getClientType,
-        FileToBase64: FileToBase64,
-        AutoResizeImage: AutoResizeImage,
-        alert: alert,
-        post: AjaxPost,
-        showErrorPage: showErrorPage
     };
 });
