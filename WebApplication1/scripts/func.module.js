@@ -2,6 +2,8 @@
 
     /**
      * 生成UUID
+     *      作者：杨瑜堃
+     *      版本：1.0.1
      * @returns {String}  UUID
      */
     function uuid() {
@@ -19,6 +21,8 @@
 
     /**
      * 生成GUID
+     *      作者：杨瑜堃
+     *      版本：1.0.1
      * @returns {String} GUID
      */
     function guid() {
@@ -28,6 +32,8 @@
 
     /**
      * 根据表达式计算结果
+     *      作者：杨瑜堃
+     *      版本：1.0.1
      * @param expression 计算表达式
      * @param precision 计算的精度值，如果精度>15或者<0，将按照精度值2来返回结果。默认为2
      * @param isFourHomesFive 是否四舍五入
@@ -46,12 +52,16 @@
 
     /**
      * 对数字进行固定精度操作
+     *      作者：杨瑜堃
+     *      版本：1.0.1
      * @param {number} number 要固定精度的数字
      * @param {type} precision 要固定的精度位数，如果精度>15或者小于0，直接返回输入的数字。默认为2
      * @param {type} isFourHomesFive 固定精度时是否四舍五入
      */
     function toFixed(number, precision, isFourHomesFive) {
         try {
+            if (!precision) precision = 2;
+
             if (precision > 15 || precision < 0) {
                 return number;
             }
@@ -90,6 +100,8 @@
 
     /**
      * 校验对象不为undefined和空
+     *      作者：杨瑜堃
+     *      版本：1.0.1
      * @param {Object} value 要判断的对象
      * @returns {Boolean} 结果
      */
@@ -97,11 +109,14 @@
         return typeof value !== 'undefined' && value !== null;
     }
 
-    
+    /**
+     * 判断对象是否是含有值的数组
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {Object} value 要判断的对象
+     * @returns {Boolean} 结果
+     */
     function isHasValuesArray(value) {
-        /// <summary>判断对象是否是含有值得数组</summary>     
-        /// <param name="value" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean"></returns>
         try {
             if (this.isArray(value)) {
                 return value.length > 0;
@@ -113,10 +128,14 @@
         }
     }
 
+    /**
+     * pushState创建历史记录
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {Object} state state对象，至少包含title和url属性。url不能跨域
+     * @returns {Boolean} 执行结果
+     */
     function pushStateToHistroy(state) {
-        /// <summary>pushState创建历史记录</summary>     
-        /// <param name="value" type="Object">state对象，至少包含title和url属性。url不能跨域</param>             
-        /// <returns type="Boolean">执行结果</returns>
         try {
             if (history.pushState && 'pushState' in history) {
                 document.title = state.title;
@@ -130,58 +149,28 @@
         }
     }
 
-    function isDecimal(num) {
-        /// <summary>判断一个数是否是小数(字符)</summary>     
-        /// <param name="value" type="number">要判断的内容</param>             
-        /// <returns type="Boolean"></returns>   
-        try {
-            if (typeof num === 'number') {
-                var numString = num.toString();
-                if (numString.indexOf('.') > 0) {
-                    return parseInt(numString.substring(numString.indexOf(".") + 1)) > 0;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }
-        } catch (e) {
-            return false;
-        }
-    }
-
-    function isString(val) {
-        /// <summary>判断对象是否是字符串</summary>     
-        /// <param name="val" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean">判断结果</returns>
-        return typeof val === 'string';
-    }
-
-    function isFunction(val) {
-        /// <summary>判断对象是否是函数</summary>     
-        /// <param name="val" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean">判断结果</returns>
-        return typeof val === 'function';
-    }
-
+    /**
+     * 判断是否是手机电话
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {String} val 要判断的值
+     * @returns {Boolean} 执行结果
+     */
     function isMobilePhone(val) {
-        /// <summary>
-        /// 判断是否是手机电话
-        /// </summary>
-        /// <param name="val" type="String">要判断的值</param>
-        /// <returns type="Boolean"></returns>
         var patrn = /^((13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8})*$/;
         if (patrn.exec(val))
             return true;
         return false;
     }
 
+    /**
+     * 是否是网址
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {String} val 要判断的值
+     * @returns {Boolean} 执行结果
+     */
     function isWebAddress(val) {
-        /// <summary>
-        /// 是否是网址
-        /// </summary>
-        /// <param name="val" type="String">要判断的值</param>
-        /// <returns type="Boolean"></returns>
         var strRegex = /(http(s)?:\/\/|^$)([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
         var patrn = new RegExp(strRegex);
         if (patrn.exec(val))
@@ -189,45 +178,55 @@
         return false;
     }
 
+    /**
+     * 判断对象是否是电话号码
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {String} val 要判断的值
+     * @returns {Boolean} 判断结果
+     */
     function isPhone(val) {
-        /// <summary>判断对象是否是电话号码</summary>     
-        /// <param name="val" type="Object">要判断的对象</param>             
-        /// <returns type="Boolean">判断结果</returns>
-        var patrn = /^((13[0-9]|14[0-9]|15[0-9]|17[0-9]|18[0-9])\d{8})*$/;
-        if (patrn.exec(val))
-            return true;
         var patrn = /^(\d{3}-\d{8}|\d{4}-\d{7})*$/;
         if (patrn.exec(val))
             return true;
         return false;
     }
 
+    /**
+     * 比较两个时间的大小，如出现异常将抛出
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {String} startTimeString 开始时间字符串
+     * @param {String} endTimeString 结束时间字符串
+     * @returns {Boolean} 判断结果
+     */
     function timeCompare(startTimeString, endTimeString) {
-        /// <summary>比较两个时间的大小</summary>     
-        /// <param name="startTimeString" type="String">开始时间</param>             
-        /// <param name="endTimeString" type="String">结束时间</param>
-        /// <returns type="Boolean"></returns>
         try {
             return Date.parse(startTimeString) >= Date.parse(endTimeString);
         } catch (e) {
-            return false;
+            throw new Error("比较两个时间的大小出错，原因是：{0}".format(e.message));
         }
     }
 
-    function createStringSplitByCommaFromArray(rows, fieldName) {
-        /// <summary>传进一个数据对象集合，根据指定的字段名称，将对应的值取出，以逗号分隔，每个字段以单引号引用，返回一个组合好的字符串</summary>     
-        /// <param name="rows" type="Object[]">数据对象的集合</param>
-        /// <param name="fieldName" type="String">要取出的字段名称</param>    
-        /// <returns type="String"></returns>
+    /**
+     * 传进一个数据对象集合，根据指定的字段名称，将对应的值取出，以逗号分隔，每个字段以单引号引用，返回一个组合好的字符串。
+     * 如：'123','123'
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {type} rows 数据对象的集合
+     * @param {type} fieldName 要取出的字段名称
+     * @returns {Boolean} 组合好的字符串
+     */
+    function createStringSplitByCommaFromArray(rows, fieldName) {        
         try {
             var retString = "";
-            $.each(rows, function (index, item) {
-                retString += "'" + item[fieldName] + "',";
-            });
+            for (var i = 0; i < rows.length; i++) {
+                retString += "'" + rows[i][fieldName] + "',";
+            }            
             retString = retString.replace(/,$/gi, "");
             return retString;
         } catch (e) {
-            throw e;
+            throw new Error("组合字符串出错，原因是：{0}".format(e.message));
         }
     }
 
@@ -522,5 +521,6 @@
     }
 
     return {
+        toFixed: toFixed
     };
 });
