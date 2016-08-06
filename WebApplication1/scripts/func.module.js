@@ -1,4 +1,15 @@
-﻿modules.define("func", ["tool"], function (tool) {
+﻿/**
+ * 该模块是一些公用方法模块
+ * 
+ *      作者：杨瑜堃
+ *      版本：1.0.1
+ * 
+ * 改模依赖自：tool
+*/
+
+modules.define("func", ["tool", "vers"], function (tool, vers) {
+
+    var browser = vers.browser;
 
     /**
      * 生成UUID
@@ -118,7 +129,7 @@
      */
     function isHasValuesArray(value) {
         try {
-            if (this.isArray(value)) {
+            if (tool.isArray(value)) {
                 return value.length > 0;
             } else {
                 return false;
@@ -217,12 +228,12 @@
      * @param {type} fieldName 要取出的字段名称
      * @returns {Boolean} 组合好的字符串
      */
-    function createStringSplitByCommaFromArray(rows, fieldName) {        
+    function createStringSplitByCommaFromArray(rows, fieldName) {
         try {
             var retString = "";
             for (var i = 0; i < rows.length; i++) {
                 retString += "'" + rows[i][fieldName] + "',";
-            }            
+            }
             retString = retString.replace(/,$/gi, "");
             return retString;
         } catch (e) {
@@ -230,13 +241,15 @@
         }
     }
 
+    /**
+     * 格式化json序列化的时间格式
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {String} jsondate 时间
+     * @param {String} format 格式
+     * @returns {String} 结果
+     */
     function formatJsonDate(jsondate, format) {
-        /// <summary>
-        ///     格式化时间
-        /// </summary>     
-        /// <param name="jsondate" type="String">json时间文本</param>    
-        /// <param name="format" type="String">格式化文本</param> 
-        /// <returns type="String">格式化的字符串</returns>
         jsondate = jsondate + "";
         if (!/^\/Date[(].+[)]\/$/.test(jsondate)) return jsondate.replace("T", " ");
         jsondate = jsondate.replace("/Date(", "").replace(")/", "");
@@ -251,13 +264,15 @@
         return datetime.Format(format);
     }
 
+    /**
+     * 选取范围内的随机数，如果只输入一个参数，就是0-输入的参数之间的随机数
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {Number} under 范围起点
+     * @param {Number} over 范围终点
+     * @returns {Number} 随机的数字
+     */
     function randomBy(under, over) {
-        /// <summary>
-        ///     选取范围内的随机数，如果只输入一个参数，就是0-输入的参数之间的随机数
-        /// </summary>     
-        /// <param name="under" type="Number">范围起点</param>    
-        /// <param name="over" type="Number">范围终点</param> 
-        /// <returns type="Number">随机的数字</returns>
         switch (arguments.length) {
             case 1: return parseInt(Math.random() * under + 1);
             case 2: return parseInt(Math.random() * (over - under + 1) + under);
@@ -265,62 +280,44 @@
         }
     }
 
+    /**
+     * template辅助方法,用于格式化指定的过滤器。需要template支持
+     *      作者：杨瑜堃
+     *      版本：1.0.1
+     * @param {Object} template template模板接口
+     * @param {String} filterName 过滤器名称
+     * @param {Function} callBack 处理数据的函数
+     */
     function templateHelper(template, filterName, callBack) {
-        /// <summary>template辅助方法,用于格式化指定的过滤器。</summary>
-        /// <param name="template" type="Object">template模板对象</param>
-        /// <param name="filterName" type="String">过滤器名称</param>
-        /// <param name="callBack" type="Function">处理数据的函数</param>
-        /// <returns type="void"></returns>
         try {
             template.helper(filterName, callBack);
         } catch (e) {
-            throw e;
+            throw new Error("template辅助方法出错，错误原因是：{0}".format(e.message));
         }
     }
 
-    function getClientType() {
-        /// <summary>
-        /// 获取客户端类型：3.安卓 4.IOS 2.微信
-        /// </summary>
-        /// <returns type="Number"></returns>
-        var clientType = -1;
+    /**
+     * jQuery Ajax调用封装
+     * @param {String} url 调用地址
+     * @param {Object} data 表示Ajax调用传递的参数
+     * @param {Function} onSuccess 成功回调函数,函数签名为  function(data), data参数为调用结果
+     * @param {Function} unSucess 服务端返回失败时的回调
+     * @param {Boolean} modal 是否作为模态对话框显示，默认为true
+     * @param {Boolean} async 是否异步调用，默认为true
+     * @param {Function} onError 失败回调函数,函数签名为  function (XMLHttpRequest, textStatus, errorThrown)
+     * @param {Function} onComplete Ajax调用完成回调函数,函数签名为  function (XMLHttpRequest, textStatus)
+     * @param {String} dataType Ajax返回数据类型,默认为 "text"
+     */
+    function post(url, data, onSuccess, unSucess, modal, async, onError, onComplete, dataType) {
 
-        if (version.android === true) clientType = 3;
-        if (version.iPhone === true) clientType = 4;
-        if (version.weixin === true) clientType = 2;
-        return clientType;
-    }
-
-    /* 
-    * jQuery Ajax调用封装
-    * url:			调用地址
-    * data:			可选参数,表示Ajax调用参数
-    * onSuccess:	可选参数,成功回调函数,函数签名为  function(data), data参数为调用结果
-    * unSucess:	    可选参数,服务端返回失败时的回调
-    * modal:		可选参数,是否作为模态对话框显示，默认为true
-    * async:		可选参数,是否异步调用，默认为true
-    * onError:		可选参数,失败回调函数,函数签名为  function (XMLHttpRequest, textStatus, errorThrown)
-    * onComplete:	可选参数,Ajax调用完成回调函数,函数签名为  function (XMLHttpRequest, textStatus)
-    * dataType:		可选参数,Ajax返回数据类型,默认为 "text"
-    */
-    function AjaxPost(url, data, onSuccess, unSucess, modal, async, onError, onComplete, dataType) {
-        var mask = null;
         modal = (modal === false ? false : true);
         if (modal) {
-            mask = new Maskwin();
-            mask.show();
+            tool.Maskin().show();
         }
 
         var jsonData = {
             data: data
         };
-        //var tempData = JSON.stringify(data).UrlEncode();
-        //var tempBytes = loader.loadDatas(tempData);
-        //var sortArray = tempBytes.sort(function (a, b) { return a - b; });
-        //var doData = sortArray.toString();
-
-        //jsonData.sign = loader.loadData(doData);
-        //jsonData.dec = "111";
 
         var ajaxHandler = $.ajax({
             type: "post",
@@ -331,9 +328,10 @@
             data: zip(jsonData),
             async: (async == false ? async : true),
             success: function (json) {
-                if (mask) {
-                    mask.hide();
+                if (modal) {
+                    tool.Maskin().hide();
                 }
+
                 var result = JSON.parse(json || null);
                 try {
                     result.Data = JSON.parse(result.Data || null);
@@ -350,63 +348,93 @@
             },
             error: onError ? onError : function () {
                 ajaxHandler.abort();
-                mask.hide();
+                tool.Maskin().hide();
             },
-            complete: function (XMLHttpRequest, status) { //请求完成后最终执行参数
-                if (status === 'timeout') { //超时,status还有success,error等值的情况
+            //请求完成后最终执行参数
+            complete: function (XMLHttpRequest, status) {
+                if (status === 'timeout') {
+                    //超时,status还有success,error等值的情况
                     alert("访问超时");
                     ajaxHandler.abort();
-                    mask.hide();
+                    tool.Maskin().hide();
                 }
             }
         });
     }
 
-    function showErrorPage(url) {
-        try {
-            var div = $("<div/>");
-            div.css("padding", "5px");
-            div.dialog({
-                title: "不好意思出错啦",
-                width: 600,
-                height: 400,
-                buttons: [{
-                    text: '确定',
-                    iconCls: 'icon-ok',
-                    handler: function () {
-                        div.dialog("close");
-                    }
-                }],
-                onClose: function () {
-                    //关闭时摧毁该窗口
-                    div.dialog("destroy");
-                }
-            }).dialog("open").dialog("refresh", url);
-        } catch (e) {
-            throw e;
-        }
-    }
+    /**
+     * 在dom树ready之后执行给定的回调函数
+     * @method domReady
+     * @remind 如果在执行该方法的时候， dom树已经ready， 那么回调函数将立刻执行
+     * @param { Function } fn dom树ready之后的回调函数
+     * @example     
+     *
+     * UE.utils.domReady( function () {
+     *
+     *     console.log('123');
+     *
+     * } );
+     *    
+     */
+    var domReady = function () {
 
-    function getTimeStamp(jsondate) {
-        if (!jsondate) {
-            return "";
+        var fnArr = [];
+
+        function doReady(doc) {
+            //确保onready只执行一次
+            doc.isReady = true;
+            for (var ci; ci = fnArr.pop() ; ci()) {
+            }
         }
-        jsondate = jsondate + "";
-        if (!/^\/Date[(].+[)]\/$/.test(jsondate)) return jsondate.replace("T", " ");
-        jsondate = jsondate.replace("/Date(", "").replace(")/", "");
-        if (jsondate.indexOf("+") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("+"));
+
+        /**
+         * 文档加载完成后触发
+         * @param {type} onready 准备完成后的回调
+         * @param {type} win 指定的dom
+         */
+        function ready(onready, win) {
+            win = win || window;
+            var doc = win.document;
+            onready && fnArr.push(onready);
+            if (doc.readyState === "complete") {
+                doReady(doc);
+            } else {
+                doc.isReady && doReady(doc);
+
+                if (browser.ie && browser.version != 11) {
+                    (function () {
+                        if (doc.isReady) return;
+                        try {
+                            doc.documentElement.doScroll("left");
+                        } catch (error) {
+                            setTimeout(arguments.callee, 0);
+                            return;
+                        }
+                        doReady(doc);
+                    })();
+                    win.attachEvent('onload', function () {
+                        doReady(doc)
+                    });
+                } else {
+                    doc.addEventListener("DOMContentLoaded", function () {
+                        doc.removeEventListener("DOMContentLoaded", arguments.callee, false);
+                        doReady(doc);
+                    }, false);
+                    win.addEventListener('load', function () {
+                        doReady(doc)
+                    }, false);
+                }
+            }
         }
-        else if (jsondate.indexOf("-") > 0) {
-            jsondate = jsondate.substring(0, jsondate.indexOf("-"));
-        }
-        return jsondate;
-    }
+        return {
+            ready: ready
+        };
+    }();
 
     /**
-     * 对参数进行编码
-     * @param {json} jsonObj
-     * @returns {string} 
+     * 对参数进行URL编码
+     * @param {json} jsonObj 要编码的对象
+     * @returns {string} 编码结果
      */
     function zip(jsonObj) {
         if (!jsonObj) return jsonObj;
@@ -417,110 +445,69 @@
         }
     }
 
-    /*
-    * file转base编码，并压缩file
-    * 用法如下
-        func.FileToBase64(file, function(base64) {
-            func.AutoResizeImage(base64, 0, 0, function (zipbase64) {
-            
-            });
-        });
-    */
-    function FileToBase64(file, fn) {
-        //利用html5转base64
-        if ("FileReader" in window) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                if (fn) {
-                    return fn(this.result);
-                }
-            };
-            //将文件读取为DataURL
-            reader.readAsDataURL(file);
+    /**
+     * 判断是否是跨域url
+     * @param {String} url
+     * @returns {Boolean} 
+     */
+    function isCrossDomainUrl(url) {
+        var a = document.createElement('a');
+        a.href = url;
+        if (browser.ie) {
+            a.href = a.href;
         }
+        return !(a.protocol == location.protocol && a.hostname == location.hostname &&
+        (a.port == location.port || (a.port == '80' && location.port == '') || (a.port == '' && location.port == '80')));
     }
 
-    /*
-    * base64图像压缩
-    * base64:base64编码
-    * maxWidth:最大图像宽度，0为auto
-    * maxHeight:最大图像高度，0为auto
-    * fn(base64):压缩完成后回调，返回base64编码
-    * 用法如下
-        func.AutoResizeImage(base64, 0, 0, function (zipbase64) {
-        
-        });
-    */
-    function AutoResizeImage(base64, maxWidth, maxHeight, fn) {
-        //开始压缩图片
-        var img = new Image();
-        img.crossOrigin = "Anonymous";
-        img.onload = function () {
-            //获取当前最合适的图像比率
-            var hRatio;
-            var wRatio;
-            var Ratio = 1;
-            var w = img.width;
-            var h = img.height;
-            wRatio = maxWidth / w;
-            hRatio = maxHeight / h;
-            if (maxWidth == 0 && maxHeight == 0) {
-                Ratio = 1;
-            } else if (maxWidth == 0) { //
-                if (hRatio < 1) Ratio = hRatio;
-            } else if (maxHeight == 0) {
-                if (wRatio < 1) Ratio = wRatio;
-            } else if (wRatio < 1 || hRatio < 1) {
-                Ratio = (wRatio <= hRatio ? wRatio : hRatio);
+    /**
+     * 删除对象中空的属性
+     * @param {Object} obj
+     * @returns {Object} 
+     */
+    function clearEmptyAttrs(obj) {
+        for (var p in obj) {
+            if (obj[p] === '') {
+                delete obj[p]
             }
-            if (Ratio < 1) {
-                w = w * Ratio;
-                h = h * Ratio;
-            }
-
-            var canvas = document.createElement('canvas');
-            var ctx = canvas.getContext("2d");
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // canvas清屏 	
-
-            //缩小
-            img.width = w;
-            img.height = h;
-
-            //重置canvans宽高
-            canvas.width = img.width;
-            canvas.height = img.height;
-
-            ctx.drawImage(img, 0, 0, img.width, img.height); // 将图像绘制到canvas上
-            var zipbase64 = canvas.toDataURL('image/png'); //输出base64
-            //if (img.size > (1024 * 1024 * 0.5)) {
-            //    alert("图片太大，压缩后仍然超过0.5M!");
-            //    return;
-            //}
-            fn(zipbase64, img.width, img.height);
-        };
-        img.src = base64;
-        if (img.complete || img.complete === undefined) {
-            img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-            img.src = base64;
         }
+        return obj;
     }
 
-    function alert(msg, title, icon, callback) {
-        /// <summary>
-        /// 弹出easy的message
-        /// </summary>
-        /// <param name="msg" type="String">消息内容</param>
-        /// <param name="title" type="String">消息框标题</param>
-        /// <param name="icon" type="String">icon</param>
-        /// <param name="callback" type="Function">点击确定后的回调</param>
-        if (callback) {
-            $.messager.alert(title, msg, icon, callback);
+    /**
+     * 字符串转json
+     * @param {String} s
+     * @returns {Json} 
+     */
+    function str2json(s) {
+        if (!tool.isString(s)) return null;
+        if (window.JSON) {
+            return JSON.parse(s);
         } else {
-            $.messager.alert(title, msg, icon);
+            return (new Function("return " + s.trim()))();
         }
     }
-
+        
     return {
-        toFixed: toFixed
+        definededAndNotNull: definededAndNotNull,
+        templateHelper: templateHelper,
+        formatJsonDate: formatJsonDate,
+        toFixed: toFixed,
+        randomBy: randomBy,
+        post: post,
+        isCrossDomainUrl: isCrossDomainUrl,
+        domReady: domReady,
+        uuid: uuid,
+        guid: guid,
+        calculateByExpression: calculateByExpression,
+        isHasValuesArray: isHasValuesArray,
+        pushStateToHistroy: pushStateToHistroy,
+        isMobilePhone: isMobilePhone,
+        isWebAddress: isWebAddress,
+        isPhone: isPhone,
+        timeCompare: timeCompare,
+        createStringSplitByCommaFromArray: createStringSplitByCommaFromArray,
+        clearEmptyAttrs: clearEmptyAttrs,
+        str2json: str2json
     };
 });

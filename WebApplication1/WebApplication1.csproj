@@ -106,13 +106,20 @@
     <Content Include="Index.aspx" />
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
+    <Content Include="scripts\array.module.js" />
     <Content Include="scripts\bootstrap.min.css" />
     <Content Include="scripts\element.module.js" />
     <Content Include="scripts\func.module.js" />
+    <Content Include="scripts\jquery-1.9.1.min.js" />
     <Content Include="scripts\modules.manager.js" />
+    <Content Include="scripts\object.module.js" />
+    <Content Include="scripts\test.module.js" />
     <Content Include="scripts\tool.module.js" />
     <Content Include="scripts\use-module.js" />
+    <Content Include="scripts\version.module.js" />
     <Content Include="scripts\_references.js" />
+    <Content Include="ueditor\ueditor.all.js" />
+    <Content Include="ueditor\ueditor.config.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

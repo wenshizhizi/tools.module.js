@@ -1,33 +1,33 @@
-// Ä£¿é¹ÜÀí
+ï»¿// æ¨¡å—ç®¡ç†
 var modules = (function Manager() {
     var modules = {};
 
     /**
-     * ¶¨ÒåÄ£¿é
-     * @param {String} name Ä£¿éµÄÃû³Æ
-     * @param {String[]} deps ¸ÃÄ£¿éĞèÒªÒÀÀµµÄÄ£¿éÃû³Æ
-     * @param {Function} impl Ä£¿éÊµÏÖ 
+     * å®šä¹‰æ¨¡å—
+     * @param {String} name æ¨¡å—çš„åç§°
+     * @param {String[]} deps è¯¥æ¨¡å—éœ€è¦ä¾èµ–çš„æ¨¡å—åç§°
+     * @param {Function} impl æ¨¡å—å®ç° 
      */
     function define(name, deps, impl) {
         for (var i = 0; i < deps.length; i++) {
-            //»ñÈ¡ÒÀÀµµÄÄ£¿é
+            //è·å–ä¾èµ–çš„æ¨¡å—
             deps[i] = modules[deps[i]];
         }
         /**
-         * ÉèÖÃÄ£¿éµÄÒÀÀµÏî£¬Í¨¹ı²ÎÊı½øĞĞÀ©Õ¹         
+         * è®¾ç½®æ¨¡å—çš„ä¾èµ–é¡¹ï¼Œé€šè¿‡å‚æ•°è¿›è¡Œæ‰©å±•         
         */
         modules[name] = impl.apply(impl, deps);
     }
 
     /**
-     * Í¨¹ıÃû³Æ»ñÈ¡Ä£¿é
-     * @param {String} name Ä£¿éÃû³Æ
-     * @returns {Function} Ä£¿é 
+     * é€šè¿‡åç§°è·å–æ¨¡å—
+     * @param {String} name æ¨¡å—åç§°
+     * @returns {Function} æ¨¡å— 
      */
     function get(name) {
         return modules[name];
     }
-
+    
     return {
         define: define,
         get: get
