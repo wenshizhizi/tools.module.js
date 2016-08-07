@@ -1,6 +1,6 @@
 ﻿
 //例：该模块名称为test，依赖其他5个模块，分别是func，vers，tool，array，object，通过参数的方式传递给当前模块
-modules.define("test", ["func", 'vers', 'tool', 'array', 'object'], function TestDomain(func, vers, tool, array, object) {
+modules.define("test", ["func", 'vers', 'tool', 'array', 'object','ue'], function TestDomain(func, vers, tool, array, object,ue) {
 
     //测试tool模块
 
@@ -25,8 +25,12 @@ modules.define("test", ["func", 'vers', 'tool', 'array', 'object'], function Tes
         console.log((new Date()).Format("yyyy-MM-dd hh:mm:ss.S"));
     }
 
-
-
+    func.domReady.ready(function () {
+        ue.initContent("asdfasdfasdf");
+        alert(ue.getHtmlContent());
+        alert(ue.getTextContent());
+    });
+    
     return {
         testStringFormat: testStringFormat,
         testStringUnhtml: testStringUnhtml,
@@ -34,3 +38,11 @@ modules.define("test", ["func", 'vers', 'tool', 'array', 'object'], function Tes
         testDateFormat: testDateFormat
     };
 });
+
+//var t = modules.get("func");
+//t.domReady.ready(function () {
+//    var ue = UE.getEditor('container');
+//    ue.ready(function () {
+//        ue.setContent('hello');
+//    });
+//});

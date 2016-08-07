@@ -108,6 +108,7 @@
     <Content Include="scripts\ai.0.22.19-build00125.js" />
     <Content Include="scripts\ai.0.22.19-build00125.min.js" />
     <Content Include="scripts\array.module.js" />
+    <Content Include="scripts\baidu.ueditor.module.js" />
     <Content Include="scripts\bootstrap.min.css" />
     <Content Include="scripts\element.module.js" />
     <Content Include="scripts\func.module.js" />
@@ -118,8 +119,12 @@
     <Content Include="scripts\tool.module.js" />
     <Content Include="scripts\version.module.js" />
     <Content Include="scripts\_references.js" />
+    <Content Include="ueditor\index.html" />
     <Content Include="ueditor\ueditor.all.js" />
+    <Content Include="ueditor\ueditor.all.min.js" />
     <Content Include="ueditor\ueditor.config.js" />
+    <Content Include="ueditor\ueditor.parse.js" />
+    <Content Include="ueditor\ueditor.parse.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +136,13 @@
       <DependentUpon>Index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ueditor\dialogs\" />
+    <Folder Include="ueditor\lang\" />
+    <Folder Include="ueditor\net\" />
+    <Folder Include="ueditor\themes\" />
+    <Folder Include="ueditor\third-party\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

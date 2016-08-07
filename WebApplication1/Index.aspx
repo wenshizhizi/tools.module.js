@@ -13,8 +13,23 @@
     <script src="scripts/object.module.js"></script>
     <script src="scripts/tool.module.js"></script>
     <script src="scripts/func.module.js"></script>
+    
+     <!-- 配置文件 -->
+    <script src="ueditor/ueditor.config.js"></script>
+    
+    <!-- 编辑器源码文件 -->
+    <script src="ueditor/ueditor.all.min.js"></script>
+    <script src="scripts/baidu.ueditor.module.js"></script>
     <script src="scripts/test.module.js"></script>
+
+  
+    
+
+
 </head>
 <body>
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="content" style="width:800px;height:600px;" type="text/plain">
+    </script>    
 </body>
 </html>
