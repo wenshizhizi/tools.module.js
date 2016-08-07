@@ -1,26 +1,32 @@
-﻿/**
- * 该模块是工具模块，提供一些基本操作功能
- * 如扩展string的format和扩展date的format
+﻿/*!
+ * Yangyukun Script Library
+ * version: 1.0.1
+ * build: Sun Aug 07 2016 09:00:36 GMT+0800 (中国标准时间)
+ * Released under MIT license
  * 
- *      作者：杨瑜堃
- *      版本：1.0.1
- * 
- * 改模块暂无依赖项
-*/
+ * Include [baidu ueditor] (http://ueditor.baidu.com/website/)
+ */
 
-modules.define("tool", [], function () {
+//定义基础工具模块
+modules.define("tool", [], function ToolDomain() {
 
     /**
-     * 对Date的扩展，将 Date 转化为指定格式的String 
+     * 
+     * 对Date的扩展，将 Date 转化为指定格式的String
      * 月(M)、日(d)、小时(h)、分(m)、秒(s)、季度(q) 可以用 1-2 个占位符， 
      * 年(y)可以用 1-4 个占位符，毫秒(S)只能用 1 个占位符(是 1-3 位的数字) 
-     * 例子： 
-     * (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
-     * (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method Format
+     * @for Date
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} fmt 格式化字符串
      * @returns {String} 结果 
+     * 
+     * @example
+     *  
+     * (new Date()).Format("yyyy-MM-dd hh:mm:ss.S") ==> 2006-07-02 08:09:04.423
+     * (new Date()).Format("yyyy-M-d h:m:s.S")      ==> 2006-7-2 8:9:4.18 
      */
     Date.prototype.Format = function (fmt) {
         var o = {
@@ -46,12 +52,20 @@ modules.define("tool", [], function () {
     };
 
     /**
+     * 
      * 格式化字符串
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method format
+     * @for String
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} str 要格式化的字符串
      * @param {Stringp[]} args 要格式化的替换值数组
      * @returns {String} 格式化结果 
+     * 
+     * @example
+     * 
+     * "这个就是格式化字符串的列子:{0}".format("列子")
      */
     String.prototype.format = function (str, args) {
         var result = this;
@@ -77,18 +91,21 @@ modules.define("tool", [], function () {
     };
 
     /**
+     * 
      * 将str中的html符号转义,将转义“'，&，<，"，>”五个字符
+     * 
      * @method unhtml
-     * @param { String } str 需要转义的字符串
+     * @for String
+     * @author [baidu ueditor]
+     * @version 1.4.3.3
+     * @param { String } reg 需要转义的正则表达式（可选）
      * @return { String } 转义后的字符串
+     * 
      * @example
-     * ```javascript
+     * 
      * var html = '<body>&</body>';
-     *
-     * //output: &lt;body&gt;&amp;&lt;/body&gt;
-     * console.log( UE.utils.unhtml( html ) );
-     *
-     * ```
+     * 
+     * console.log( html.unhtml());//output: &lt;body&gt;&amp;&lt;/body&gt;
      */
     String.prototype.unhtml = function (reg) {
         return this ? this.replace(reg || /[&<">'](?:(amp|lt|quot|gt|#39|nbsp|#\d+);)?/g, function (a, b) {
@@ -108,20 +125,20 @@ modules.define("tool", [], function () {
     }
 
     /**
-     * 将str中的转义字符还原成html字符
-     * @see UE.utils.unhtml(String);
+     * 
+     * 将str中的转义字符还原成html字符  
+     *    
      * @method html
+     * @for String
+     * @author [baidu ueditor]
+     * @version 1.4.3.3
      * @param { String } str 需要逆转义的字符串
      * @return { String } 逆转义后的字符串
+     * 
      * @example
-     * ```javascript
-     *
+     * 
      * var str = '&lt;body&gt;&amp;&lt;/body&gt;';
-     *
-     * //output: <body>&</body>
-     * console.log( UE.utils.html( str ) );
-     *
-     * ```
+     * console.log( str.html( str ) );//output: <body>&</body>
      */
     String.prototype.html = function () {
         return this ? this.replace(/&((g|l|quo)t|amp|#39|nbsp);/g, function (m) {
@@ -137,9 +154,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断传入的是否是文件
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isFile
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} obj 要判断的文件
      * @returns {Boolean} 结果 
      */
@@ -148,9 +169,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断对象是否是数字
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isNumber
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} value 要判断的值
      * @returns {Boolean} 判断结果
      */
@@ -159,9 +184,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断对象是否是日期对象
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isDate
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} value 要判断的对象
      * @returns {Boolean}  判断结果
      */
@@ -170,9 +199,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断对象是否是数组
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isArray
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} value 要判断的对象
      * @returns {Boolean}  判断结果
      */
@@ -181,9 +214,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断一个数是否是小数(字符)
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isDecimal
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {number} num 要判断的内容
      * @returns {Boolean} 结果
      */
@@ -205,9 +242,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断对象是否是字符串
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isString
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} val 要判断的对象
      * @returns {Boolean}  判断结果
      */
@@ -216,9 +257,13 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
      * 判断对象是否是函数
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isFunction
+     * @for ToolDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} val 要判断的对象
      * @returns {Boolean} 判断结果
      */
@@ -227,16 +272,30 @@ modules.define("tool", [], function () {
     }
 
     /**
+     * 
     * 创建一个遮罩层，如果不手动消除，则10秒后自动消除
     * 此处一定注意，遮罩层的等待效果在loader.css文件中，请记得引入页面
-    *      作者：杨瑜堃
-    *      版本：1.0.1
+    * 
+    * @method Maskin
+    * @for ToolDomain
+    * @author [杨瑜堃]
+    * @version 1.0.1
     * @returns {Objec} 操作接口 
     */
     function Maskin() {
 
         var maskmsg = null;
 
+        /**
+         * 
+         * 显示遮罩层
+         * 
+         * @method show
+         * @for Maskin
+         * @author [杨瑜堃]
+         * @version 1.0.1
+         * @param [String] msg 可选：要显示的遮罩层文本
+         */
         function show(msg) {
             var h = $(document).height();
             maskmsg = $('<div style="height:100%;width:100%;position:fixed;z-index:99999;background: rgba(255,255,255,0.8);left:0px;top:0px;">' +
@@ -256,6 +315,15 @@ modules.define("tool", [], function () {
             })(maskmsg), 10000);
         }
 
+        /**
+         * 
+         * 隐藏遮罩层
+         * 
+         * @method hide
+         * @for Maskin
+         * @author [杨瑜堃]
+         * @version 1.0.1
+         */
         function hide() {
             if (maskmsg !== null) {
                 maskmsg.remove();

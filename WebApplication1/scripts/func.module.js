@@ -1,20 +1,25 @@
-﻿/**
- * 该模块是一些公用方法模块
+﻿/*!
+ * Yangyukun Script Library
+ * version: 1.0.1
+ * build: Sun Aug 07 2016 09:00:36 GMT+0800 (中国标准时间)
+ * Released under MIT license
  * 
- *      作者：杨瑜堃
- *      版本：1.0.1
- * 
- * 改模依赖自：tool
-*/
+ * Include [tool.module.js,version.module.js]
+ */
 
-modules.define("func", ["tool", "vers"], function (tool, vers) {
+//创建公用方法模块
+modules.define("func", ["tool", "vers"], function FuncDomain(tool, vers) {
 
-    var browser = vers.browser;
+    var browser = vers ? vers.browser : undefined;
 
     /**
+     * 
      * 生成UUID
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method uuid
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @returns {String}  UUID
      */
     function uuid() {
@@ -31,9 +36,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 生成GUID
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method guid
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @returns {String} GUID
      */
     function guid() {
@@ -42,13 +51,28 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 根据表达式计算结果
-     *      作者：杨瑜堃
-     *      版本：1.0.1
-     * @param expression 计算表达式
+     * 
+     * @method calculateByExpression
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
+     * @param expression 计算表达式(字符串)
      * @param precision 计算的精度值，如果精度>15或者<0，将按照精度值2来返回结果。默认为2
      * @param isFourHomesFive 是否四舍五入
      * @returns {Number} 计算结果
+     * @throws 如果出现异常将抛出
+     * 
+     * @example
+     * 
+     * calculateByExpression("1.33 * 2",1,true);
+     * 
+     * //输出 2.7
+     * 
+     * calculateByExpression("1.33 * 2",1,false);
+     * 
+     * //输出 2.6
      */
     function calculateByExpression(expression, precision, isFourHomesFive) {
         try {
@@ -62,12 +86,28 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 对数字进行固定精度操作
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method toFixed
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {number} number 要固定精度的数字
-     * @param {type} precision 要固定的精度位数，如果精度>15或者小于0，直接返回输入的数字。默认为2
-     * @param {type} isFourHomesFive 固定精度时是否四舍五入
+     * @param {number} precision 要固定的精度位数，如果精度>15或者小于0，直接返回输入的数字。默认为2
+     * @param {boolean} isFourHomesFive 固定精度时是否四舍五入
+     * @returns {number} 结果
+     * @throws 如果出现异常将抛出
+     * 
+     * @example
+     * 
+     * toFixed(2.66,1,true);
+     * 
+     * //输出 2.7
+     * 
+     * toFixed(2.66,1,false);
+     * 
+     * //输出 2.6
      */
     function toFixed(number, precision, isFourHomesFive) {
         try {
@@ -110,9 +150,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 校验对象不为undefined和空
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method definededAndNotNull
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {Object} value 要判断的对象
      * @returns {Boolean} 结果
      */
@@ -121,15 +165,19 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 判断对象是否是含有值的数组
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isHasValuesArray
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1   
      * @param {Object} value 要判断的对象
      * @returns {Boolean} 结果
      */
     function isHasValuesArray(value) {
         try {
-            if (tool.isArray(value)) {
+            if (tool && tool.isArray(value)) {
                 return value.length > 0;
             } else {
                 return false;
@@ -140,9 +188,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * pushState创建历史记录
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method pushStateToHistroy
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1   
      * @param {Object} state state对象，至少包含title和url属性。url不能跨域
      * @returns {Boolean} 执行结果
      */
@@ -161,9 +213,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 判断是否是手机电话
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isMobilePhone
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} val 要判断的值
      * @returns {Boolean} 执行结果
      */
@@ -175,9 +231,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 是否是网址
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isWebAddress
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1   
      * @param {String} val 要判断的值
      * @returns {Boolean} 执行结果
      */
@@ -190,9 +250,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 判断对象是否是电话号码
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method isPhone
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1 
      * @param {String} val 要判断的值
      * @returns {Boolean} 判断结果
      */
@@ -204,12 +268,17 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
-     * 比较两个时间的大小，如出现异常将抛出
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * 比较两个时间的大小
+     * 
+     * @method timeCompare
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1 
      * @param {String} startTimeString 开始时间字符串
      * @param {String} endTimeString 结束时间字符串
      * @returns {Boolean} 判断结果
+     * @throws 如果出现异常将抛出
      */
     function timeCompare(startTimeString, endTimeString) {
         try {
@@ -220,13 +289,17 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
-     * 传进一个数据对象集合，根据指定的字段名称，将对应的值取出，以逗号分隔，每个字段以单引号引用，返回一个组合好的字符串。
-     * 如：'123','123'
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * 传进一个数据对象集合，根据指定的字段名称，将对应的值取出，以逗号分隔，每个字段以单引号引用，返回一个组合好的字符串。如：'123','123'
+     * 
+     * @method createStringSplitByCommaFromArray
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1 
      * @param {type} rows 数据对象的集合
      * @param {type} fieldName 要取出的字段名称
      * @returns {Boolean} 组合好的字符串
+     * @throws 如果出现异常将抛出
      */
     function createStringSplitByCommaFromArray(rows, fieldName) {
         try {
@@ -242,9 +315,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 格式化json序列化的时间格式
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method formatJsonDate
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1 
      * @param {String} jsondate 时间
      * @param {String} format 格式
      * @returns {String} 结果
@@ -265,9 +342,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 选取范围内的随机数，如果只输入一个参数，就是0-输入的参数之间的随机数
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method randomBy
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1     
      * @param {Number} under 范围起点
      * @param {Number} over 范围终点
      * @returns {Number} 随机的数字
@@ -281,23 +362,36 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * template辅助方法,用于格式化指定的过滤器。需要template支持
-     *      作者：杨瑜堃
-     *      版本：1.0.1
+     * 
+     * @method templateHelper
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1     
      * @param {Object} template template模板接口
      * @param {String} filterName 过滤器名称
      * @param {Function} callBack 处理数据的函数
+     * @throws 如果出现异常将抛出
      */
     function templateHelper(template, filterName, callBack) {
         try {
-            template.helper(filterName, callBack);
+            if (template) {
+                template.helper(filterName, callBack);
+            } 
         } catch (e) {
             throw new Error("template辅助方法出错，错误原因是：{0}".format(e.message));
         }
     }
 
     /**
+     * 
      * jQuery Ajax调用封装
+     * 
+     * @method post
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} url 调用地址
      * @param {Object} data 表示Ajax调用传递的参数
      * @param {Function} onSuccess 成功回调函数,函数签名为  function(data), data参数为调用结果
@@ -312,7 +406,9 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
 
         modal = (modal === false ? false : true);
         if (modal) {
-            tool.Maskin().show();
+            if(tool){
+                tool.Maskin().show();
+            }
         }
 
         var jsonData = {
@@ -329,7 +425,9 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
             async: (async == false ? async : true),
             success: function (json) {
                 if (modal) {
-                    tool.Maskin().hide();
+                    if (tool) {
+                        tool.Maskin().hide();
+                    }
                 }
 
                 var result = JSON.parse(json || null);
@@ -348,7 +446,9 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
             },
             error: onError ? onError : function () {
                 ajaxHandler.abort();
-                tool.Maskin().hide();
+                if (tool) {
+                    tool.Maskin().hide();
+                }
             },
             //请求完成后最终执行参数
             complete: function (XMLHttpRequest, status) {
@@ -356,23 +456,28 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
                     //超时,status还有success,error等值的情况
                     alert("访问超时");
                     ajaxHandler.abort();
-                    tool.Maskin().hide();
+                    if (tool) {
+                        tool.Maskin().hide();
+                    }
                 }
             }
         });
     }
 
     /**
-     * 在dom树ready之后执行给定的回调函数
+     * 
+     * 在dom树ready之后执行给定的回调函数。如果在执行该方法的时候， dom树已经ready， 那么回调函数将立刻执行
+     * 
      * @method domReady
-     * @remind 如果在执行该方法的时候， dom树已经ready， 那么回调函数将立刻执行
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1     
      * @param { Function } fn dom树ready之后的回调函数
+     * 
      * @example     
      *
-     * UE.utils.domReady( function () {
-     *
-     *     console.log('123');
-     *
+     * domReady( function () { 
+     *     console.log('123'); 
      * } );
      *    
      */
@@ -401,7 +506,7 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
             } else {
                 doc.isReady && doReady(doc);
 
-                if (browser.ie && browser.version != 11) {
+                if (browser && browser.ie && browser.version != 11) {
                     (function () {
                         if (doc.isReady) return;
                         try {
@@ -432,7 +537,13 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }();
 
     /**
+     * 
      * 对参数进行URL编码
+     * 
+     * @method zip
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {json} jsonObj 要编码的对象
      * @returns {string} 编码结果
      */
@@ -446,36 +557,34 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
     }
 
     /**
+     * 
      * 判断是否是跨域url
+     * 
+     * @method isCrossDomainUrl
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} url
      * @returns {Boolean} 
      */
     function isCrossDomainUrl(url) {
         var a = document.createElement('a');
         a.href = url;
-        if (browser.ie) {
+        if (browser && browser.ie) {
             a.href = a.href;
         }
         return !(a.protocol == location.protocol && a.hostname == location.hostname &&
         (a.port == location.port || (a.port == '80' && location.port == '') || (a.port == '' && location.port == '80')));
     }
-
+        
     /**
-     * 删除对象中空的属性
-     * @param {Object} obj
-     * @returns {Object} 
-     */
-    function clearEmptyAttrs(obj) {
-        for (var p in obj) {
-            if (obj[p] === '') {
-                delete obj[p]
-            }
-        }
-        return obj;
-    }
-
-    /**
+     * 
      * 字符串转json
+     * 
+     * @method str2json
+     * @for FuncDomain
+     * @author [杨瑜堃]
+     * @version 1.0.1
      * @param {String} s
      * @returns {Json} 
      */
@@ -506,8 +615,8 @@ modules.define("func", ["tool", "vers"], function (tool, vers) {
         isWebAddress: isWebAddress,
         isPhone: isPhone,
         timeCompare: timeCompare,
-        createStringSplitByCommaFromArray: createStringSplitByCommaFromArray,
-        clearEmptyAttrs: clearEmptyAttrs,
-        str2json: str2json
+        createStringSplitByCommaFromArray: createStringSplitByCommaFromArray,        
+        str2json: str2json,
+        zip: zip
     };
 });

@@ -1,0 +1,310 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <style type="text/css">
+        table {
+            border-collapse: collapse;
+            border: 1px solid rgb(221, 221, 221);
+        }
+
+        td {
+            border: 1px solid rgb(221, 221, 221);
+            padding: 3px;
+        }
+
+        caption {
+            border-top: 1px dashed rgb(221, 221, 221);
+            border-left: 1px dashed rgb(221, 221, 221);
+            border-right: 1px dashed rgb(221, 221, 221);
+        }
+
+        th {
+            border: 1px solid rgb(221, 221, 221);
+            background-color: rgb(247, 247, 247);
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <span style="color: rgb(227, 108, 9);"><strong>该模块是模块加载的管理模块。</strong></span>
+    </p>
+    <p>
+        <strong><span style="color: rgb(227, 108, 9);">在该模块中，会定义一个全局变量【<strong style="white-space: normal;"><span style="color: rgb(192, 0, 0);">modules</span></strong>】</span></strong><strong><span style="color: rgb(0, 0, 0);">。</span></strong>
+    </p>
+    <p>
+        <strong><span style="color: rgb(0, 0, 0);"><br /></span></strong>
+    </p>
+    <p>
+        <strong><span style="color: rgb(54, 96, 146);">使用模块：</span></strong>
+    </p>
+    <p>
+        <strong><span style="color: rgb(118, 146, 60);">&lt;script src=&quot;scripts/modules.manager.js&quot;&gt;&lt;/script&gt;</span></strong>
+    </p>
+    <p>
+        <strong><span style="color: rgb(118, 146, 60);"><br /></span></strong>
+    </p>
+    <p style="text-indent: 2em;">
+        <strong><span style="color: rgb(54, 96, 146);">引入该模块文件则会自动生成一个全局变量，由于该模块是所有其他模块的基础管理模块，因此请在加载其他模块前先引入该模块。</span></strong><br />
+    </p>
+    <p>
+        <br />
+    </p>
+    <p>
+        <strong><span style="color: rgb(54, 96, 146);">modules提供两个方法</span></strong><span style="color: rgb(0, 0, 0);">：<br /></span>
+    </p>
+    <p>
+        <span style="color: rgb(0, 0, 0);"><br /></span>
+    </p>
+    <p>
+        <span style="color: rgb(0, 0, 0);"></span>
+    </p>
+    <table>
+        <tbody>
+            <tr class="firstRow">
+                <td valign="top" style="word-break: break-all;" width="148">
+                    <strong><span style="color: rgb(54, 96, 146);">define</span></strong>
+                </td>
+                <td width="674" valign="top" style="word-break: break-all;">
+                    定义模块。
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="word-break: break-all;" width="148">
+                    <strong><span style="color: rgb(54, 96, 146);">get</span></strong>
+                </td>
+                <td width="674" valign="top" style="word-break: break-all;">
+                    通过名称获取模块。
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <br />
+    </p>
+    <p>
+        <br />
+    </p>
+    <table>
+        <caption style="border-color: rgb(221, 221, 221);">
+            <strong><span style="color: rgb(54, 96, 146);">模块提供两个方法</span></strong><br />
+        </caption>
+        <tbody>
+            <tr class="firstRow">
+                <th style="border-color: rgb(221, 221, 221);" width="114">
+                    方法名
+                </th>
+                <th style="border-color: rgb(221, 221, 221); word-break: break-all;" width="679">
+                    方法详述
+                </th>
+            </tr>
+            <tr>
+                <td valign="top" rowspan="1" colspan="1" style="word-break: break-all; border-color: rgb(221, 221, 221);" align="center" width="115">
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <strong style="white-space: normal;"><br /></strong>
+                    </p>
+                    <p>
+                        <span style="color: rgb(54, 96, 146);"><strong style="white-space: normal;">define(name, deps, impl)</strong></span>
+                    </p>
+                </td>
+                <td valign="top" rowspan="1" colspan="1" style="word-break: break-all; border-color: rgb(221, 221, 221);" width="679">
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(192, 0, 0);">参数</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        &nbsp;&nbsp; &nbsp;
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        &nbsp;<strong><span style="color: rgb(79, 97, 40);">{String} name 模块的名称</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(79, 97, 40);">&nbsp;{String[]} deps 该模块需要依赖的模块名称</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(79, 97, 40);">&nbsp;{Function} impl 模块实现</span></strong>&nbsp;
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(192, 0, 0);">如</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">modules.define(&quot;test&quot;, [&quot;func&quot;, &#39;vers&#39;, &#39;tool&#39;, &#39;array&#39;, &#39;object&#39;], function (func, vers, tool, array, object) {</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; var arr = [4, 5, 7, 1, 3, 4, 6];</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; array.sort(arr, function (v1, v2) {</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; return v1 &gt; v2;</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; });</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp;&nbsp;</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; array.each(arr, function (value,key) {</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; console.log(value);</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; })</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; func.domReady.ready(function () {</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; alert(&quot;加载完毕&quot;);</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; });</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; return {</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; func: func,</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; vers: vers,</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; &nbsp; &nbsp; tool: tool</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">&nbsp; &nbsp; };</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <strong><span style="color: rgb(23, 54, 93);">});</span></strong>
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-top: 0px; margin-bottom: 0px; padding: 0px; white-space: normal;">
+                        &nbsp;&nbsp;<span style="color: rgb(192, 0, 0);"><strong>上面的调用中,&quot;text&quot;表示当前模块的名称，后面的数组表示这个模块需要依赖的其他模块名称，最后的实现将需要依赖的模块用参数的方式引入当前模块的实现。</strong></span>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top" style="word-break: break-all; border-color: rgb(221, 221, 221);" rowspan="2" colspan="1" align="center" width="115">
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <strong><br /></strong>
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <strong><br /></strong>
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <span style="color: rgb(54, 96, 146);"><strong>get(name)</strong></span><br />
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <br />
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <strong><br /></strong>
+                    </p>
+                    <p style="margin-bottom: 0px; margin-top: 0px; line-height: normal;">
+                        <br />
+                    </p>
+                </td>
+                <td valign="top" rowspan="2" colspan="1" style="word-break: break-all; border-color: rgb(221, 221, 221);" width="679">
+                    <p style="white-space: normal;">
+                        <strong><span style="color: rgb(192, 0, 0);">参数</span></strong>
+                    </p>
+                    <p style="white-space: normal;">
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                    </p>
+                    <p style="white-space: normal;">
+                        &nbsp;<strong><span style="color: rgb(79, 97, 40);">{String} name 模块名称</span></strong><br />
+                    </p>
+                    <p style="white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="white-space: normal;">
+                        <strong><span style="color: rgb(192, 0, 0);">如</span></strong>
+                    </p>
+                    <p style="white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="white-space: normal;">
+                        &nbsp; <strong><span style="color: rgb(23, 54, 93);">var test = modules.get(&quot;test&quot;);</span></strong>
+                    </p>
+                    <p style="white-space: normal;">
+                        <br />
+                    </p>
+                    <p style="white-space: normal;">
+                        &nbsp; <strong><span style="color: rgb(192, 0, 0);">上面的调用中，通过get获取了名称为test的模块。</span></strong>
+                    </p>
+                </td>
+            </tr>
+            <tr></tr>
+        </tbody>
+    </table>
+    <p style="text-align: center;">
+        <br />
+    </p>
+</body>
+</html>
