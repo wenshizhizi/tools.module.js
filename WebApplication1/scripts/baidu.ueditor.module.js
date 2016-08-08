@@ -9,7 +9,7 @@
 modules.define("ue", [], function UEDomain() {
     var ue = null;
 
-    function initUe(){
+    function initUe() {
         if (ue === null) { ue = UE.getEditor('container'); }
     }
 
@@ -21,22 +21,13 @@ modules.define("ue", [], function UEDomain() {
      * @for UEDomain
      * @author [杨瑜堃]
      * @version 1.0.1
-     * @param {String} content 富文本内容
-     * @throws 未能初始化ue则抛出异常
+     * @param {String} content 富文本内容     
      */
     function initContent(content) {
-        try {
-            initUe();
-            if (ue) {
-                ue.ready(function () {
-                    ue.setContent(content);                    
-                });
-            } else {
-                throw new Error("未能初始化ue对象");
-            }
-        } catch (e) {
-            throw new Error("未能初始化ue对象");
-        }
+        initUe();
+        ue.ready(function () {
+            ue.setContent(content);
+        });
     }
 
     /**
@@ -50,7 +41,6 @@ modules.define("ue", [], function UEDomain() {
      * @returns {String} html内容
      */
     function getHtmlContent() {
-        initUe();
         return ue.getContent();
     }
 
@@ -65,11 +55,10 @@ modules.define("ue", [], function UEDomain() {
      * @returns {String} 文本内容
      */
     function getTextContent() {
-        initUe();
         return ue.getContentTxt();
     }
 
-    return {        
+    return {
         initContent: initContent,
         getHtmlContent: getHtmlContent,
         getTextContent: getTextContent

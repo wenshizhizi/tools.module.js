@@ -25,10 +25,17 @@ modules.define("test", ["func", 'vers', 'tool', 'array', 'object','ue'], functio
         console.log((new Date()).Format("yyyy-MM-dd hh:mm:ss.S"));
     }
 
+   
+
     func.domReady.ready(function () {
-        ue.initContent("asdfasdfasdf");
-        alert(ue.getHtmlContent());
-        alert(ue.getTextContent());
+        //ue.initContent("asdfasdfasdf");
+        //alert(ue.getHtmlContent());
+        //alert(ue.getTextContent());
+
+        var ue = UE.getEditor('container');
+
+        ue.set
+
     });
     
     return {

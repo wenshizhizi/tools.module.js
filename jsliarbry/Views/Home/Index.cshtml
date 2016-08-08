@@ -1,0 +1,36 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/jslib/modules.manager.js"></script>
+    <script src="~/jslib/version.module.js"></script>
+    <script src="~/jslib/array.module.js"></script>
+    <script src="~/jslib/object.module.js"></script>
+    <script src="~/jslib/tool.module.js"></script>
+    <script src="~/jslib/func.module.js"></script>    
+    <script src="~/jslib/element.module.js"></script> 
+
+    <!-- 配置文件 -->
+    <script src="~/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script src="~/ueditor/ueditor.all.js"></script>    
+    <!--ueditor模块请在ueditor之后加载-->
+    <script src="~/jslib/baidu.ueditor.module.js"></script>
+    <script src="~/jslib/test.module.js"></script>
+    <script src="~/jslib/page_control.js"></script>
+</head>
+<body>
+    <!-- 加载编辑器的容器 -->
+    <script id="container" name="content" style="width:800px;height:600px;" type="text/plain">
+    </script>
+
+    <button id="btn">test</button>
+</body>
+</html>
