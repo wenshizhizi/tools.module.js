@@ -13,12 +13,20 @@ using System.Web;
 public static class Config
 {
     private static bool noCache = true;
+
+    /// <summary>
+    /// 从后台读取配置json
+    /// </summary>
+    /// <returns></returns>
     private static JObject BuildItems()
     {
         var json = File.ReadAllText(HttpContext.Current.Server.MapPath("config.json"));
         return JObject.Parse(json);
     }
 
+    /// <summary>
+    /// 获取配置
+    /// </summary>
     public static JObject Items
     {
         get
